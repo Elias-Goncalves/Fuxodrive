@@ -37,11 +37,8 @@ async function listChildren(
   let pageToken: string | undefined;
 
   do {
-    const query = encodeURIComponent(
-      `'${folderId}' in parents and trashed = false`
-    );
     const params = new URLSearchParams({
-      q: query,
+      q: `'${folderId}' in parents and trashed = false`,
       fields: "nextPageToken, files(id, name, mimeType, size, parents)",
       pageSize: "1000",
     });
