@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { RefreshCw, Search } from "lucide-react";
 import { Logo } from "./Logo";
+import { UserMenu } from "./UserMenu";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -62,7 +63,7 @@ export function Navbar() {
             Sincronizar
           </button>
 
-          <div className="h-8 w-8 rounded-full bg-surface-3" aria-hidden="true" />
+          <UserMenu />
         </div>
       </div>
     </header>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { Logo } from "./Logo";
+import { UserMenu } from "./UserMenu";
 
 export function MobileHeader() {
   return (
@@ -12,7 +13,7 @@ export function MobileHeader() {
         <button aria-label="Buscar" className="text-text-secondary">
           <Search size={20} strokeWidth={1.75} />
         </button>
-        <div className="h-7 w-7 rounded-full bg-surface-3" aria-hidden="true" />
+        <UserMenu compact />
       </div>
     </header>
   );
