@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { RefreshCw, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { Logo } from "./Logo";
 import { UserMenu } from "./UserMenu";
+import { SyncButton } from "./SyncButton";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
@@ -51,17 +52,7 @@ export function Navbar() {
             </kbd>
           </button>
 
-          <button
-            aria-label="Sincronizar biblioteca do Google Drive"
-            className="flex items-center gap-2 rounded-full border border-status-success/30 bg-status-success/10 px-3 py-1.5 text-xs font-semibold text-status-success transition-colors hover:bg-status-success/20"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-status-success opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-status-success" />
-            </span>
-            <RefreshCw size={14} strokeWidth={1.75} />
-            Sincronizar
-          </button>
+          <SyncButton />
 
           <UserMenu />
         </div>
