@@ -1,21 +1,35 @@
 {
+  "id": "/",
   "name": "DriveStream",
   "short_name": "DriveStream",
   "description": "Sua central de streaming pessoal a partir do Google Drive.",
+  "lang": "pt-BR",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "fullscreen"],
+  "orientation": "any",
   "background_color": "#09090b",
   "theme_color": "#09090b",
+  "categories": ["entertainment", "multimedia", "video"],
   "icons": [
     {
       "src": "/icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
