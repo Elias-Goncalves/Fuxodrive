@@ -1,0 +1,22 @@
+import { MediaCard } from "@/components/media/MediaCard";
+import { getLibrary } from "@/lib/data/media";
+
+export default async function FilmesPage() {
+  const movies = await getLibrary("movie");
+
+  return (
+    <div className="px-4 py-6 md:px-10 lg:px-14">
+      <h1 className="mb-6 text-2xl font-black tracking-tight text-white">Filmes</h1>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7">
+        {movies.map((media) => (
+          <MediaCard key={media.id} media={media} />
+        ))}
+      </div>
+      {movies.length === 0 && (
+        <p className="text-sm text-text-secondary">
+          Nenhum filme encontrado. Sincronize sua biblioteca do Google Drive.
+        </p>
+      )}
+    </div>
+  );
+}
