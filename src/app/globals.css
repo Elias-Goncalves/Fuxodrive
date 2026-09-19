@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  /* Fundo & Camadas de Profundidade (Superfícies) */
+  --bg-canvas: #09090b;
+  --bg-surface-1: #121215;
+  --bg-surface-2: #18181b;
+  --bg-surface-3: #27272a;
+
+  /* Bordas e Divisores */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(99, 102, 241, 0.5);
+
+  /* Cores de Marca & Acentos Principais */
+  --accent-primary: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-glow: rgba(99, 102, 241, 0.25);
+  --accent-cyan: #06b6d4;
+
+  /* Tipografia & Contrastes */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-disabled: #475569;
+
+  /* Estados de Feedback */
+  --status-success: #10b981;
+  --status-warning: #f59e0b;
+  --status-error: #ef4444;
+
+  --background: var(--bg-canvas);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-canvas: var(--bg-canvas);
+  --color-surface-1: var(--bg-surface-1);
+  --color-surface-2: var(--bg-surface-2);
+  --color-surface-3: var(--bg-surface-3);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-focus: var(--border-focus);
+
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-cyan: var(--accent-cyan);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+
+  --color-status-success: var(--status-success);
+  --color-status-warning: var(--status-warning);
+  --color-status-error: var(--status-error);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-montserrat);
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Utilitários de scrollbar para carrosséis (Mobile / Touch) */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glassmorphism helper */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+}
