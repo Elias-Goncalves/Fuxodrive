@@ -52,7 +52,10 @@ async function listChildren(
     });
 
     if (!response.ok) {
-      throw new Error(`Falha ao listar arquivos do Drive (${response.status})`);
+      const body = await response.text();
+      throw new Error(
+        `Falha ao listar arquivos do Drive (${response.status}): ${body.slice(0, 500)}`
+      );
     }
 
     const data: { files: DriveEntry[]; nextPageToken?: string } =
