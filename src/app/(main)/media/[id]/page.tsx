@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Star } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { getLibrary } from "@/lib/data/media";
-import { VideoPlayer } from "@/components/player/VideoPlayer";
+import { MediaPlayerSection } from "@/components/media/MediaPlayerSection";
 import { QualityBadge } from "@/components/ui/Badge";
 import { formatFileSize, formatRuntime } from "@/lib/utils";
 import { buildProxyStreamUrl } from "@/lib/drive/client";
@@ -31,9 +31,12 @@ export default async function MediaDetailPage({
   return (
     <div className="mx-auto max-w-5xl px-4 py-6 md:px-10 lg:px-0 lg:py-10">
       {primaryFile ? (
-        <VideoPlayer
-          src={buildProxyStreamUrl(primaryFile.driveFileId)}
-          poster={media.backdropPath}
+        <MediaPlayerSection
+          mediaId={media.id}
+          fileId={primaryFile.driveFileId}
+          title={media.title}
+          posterPath={media.posterPath}
+          streamUrl={buildProxyStreamUrl(primaryFile.driveFileId)}
         />
       ) : (
         media.backdropPath && (
