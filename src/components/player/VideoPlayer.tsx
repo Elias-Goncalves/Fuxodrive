@@ -27,9 +27,11 @@ function formatTime(seconds: number): string {
 export function VideoPlayer({
   src,
   poster,
+  onError,
 }: {
   src: string;
   poster?: string | null;
+  onError?: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -126,6 +128,7 @@ export function VideoPlayer({
         poster={poster ?? undefined}
         className="h-full w-full"
         onClick={togglePlay}
+        onError={onError}
         playsInline
       />
 

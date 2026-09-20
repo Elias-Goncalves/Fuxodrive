@@ -34,6 +34,7 @@ export default async function MediaDetailPage({
         <MediaPlayerSection
           mediaId={media.id}
           fileId={primaryFile.driveFileId}
+          fileName={primaryFile.fileName}
           title={media.title}
           posterPath={media.posterPath}
           streamUrl={buildProxyStreamUrl(primaryFile.driveFileId)}
