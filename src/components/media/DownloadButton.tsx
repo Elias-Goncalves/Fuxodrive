@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, Check, Download, Trash2, X } from "lucide-react";
+import { AlertTriangle, Download, Trash2, X } from "lucide-react";
 import { useOfflineDownload } from "@/hooks/useOfflineDownload";
 import { cn } from "@/lib/utils";
 
@@ -67,11 +67,10 @@ export function DownloadButton({
       <button
         onClick={removeDownload}
         aria-label="Remover download offline"
-        title="Disponível offline no app — clique para remover"
-        className="group flex h-9 w-9 items-center justify-center rounded-full bg-status-success/10 text-status-success hover:bg-status-error/10 hover:text-status-error"
+        title="Disponível offline no app — toque para remover"
+        className="flex h-9 w-9 items-center justify-center rounded-full bg-status-success/10 text-status-success active:bg-status-error/10 active:text-status-error"
       >
-        <Check size={16} strokeWidth={2} className="group-hover:hidden" />
-        <Trash2 size={16} strokeWidth={2} className="hidden group-hover:block" />
+        <Trash2 size={16} strokeWidth={2} />
       </button>
     );
   }
