@@ -77,7 +77,7 @@ export default function DownloadsPage() {
       ) : (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {records.map((record) => (
-            <div key={record.fileId} className="group relative">
+            <div key={record.fileId} className="relative">
               <Link
                 href={`/media/${record.mediaId}`}
                 className="block aspect-[2/3] w-full overflow-hidden rounded-xl bg-surface-2 ring-1 ring-white/10"
@@ -99,7 +99,7 @@ export default function DownloadsPage() {
               <button
                 onClick={() => handleRemove(record.fileId)}
                 aria-label={`Remover ${record.title} dos downloads`}
-                className="absolute right-2 top-2 rounded-full bg-black/60 p-1.5 text-white opacity-0 backdrop-blur-md transition-opacity hover:bg-status-error/80 group-hover:opacity-100"
+                className="absolute right-2 top-2 rounded-full bg-black/60 p-1.5 text-white backdrop-blur-md hover:bg-status-error/80 active:bg-status-error/80"
               >
                 <Trash2 size={14} strokeWidth={2} />
               </button>

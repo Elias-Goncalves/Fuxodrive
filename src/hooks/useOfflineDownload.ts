@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface DownloadRecord {
   mediaId: string;
@@ -50,6 +50,17 @@ export async function deleteDownloadByFileId(fileId: string) {
   writeIndex(readIndex().filter((record) => record.fileId !== fileId));
 }
 
+async function opfsFileExists(fileId: string): Promise<boolean> {
+  if (!isOfflineSupported()) return false;
+  try {
+    const root = await getOpfsRoot();
+    await root.getFileHandle(fileId);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export async function getOfflinePlaybackUrl(
   fileId: string
 ): Promise<string | null> {
@@ -87,6 +98,29 @@ export function useOfflineDownload({
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  // O índice em localStorage e o arquivo real no OPFS podem ficar
+  // dessincronizados (download interrompido, storage limpo pelo navegador,
+  // etc.) — confere a existência real do arquivo e corrige o estado exibido
+  // caso o índice esteja mentindo, em vez de mostrar "baixado" sem ter como
+  // excluir ou reproduzir de fato.
+  useEffect(() => {
+    let active = true;
+    const indexed = readIndex().some((item) => item.fileId === fileId);
+    if (!indexed) return;
+
+    opfsFileExists(fileId).then((exists) => {
+      if (!active) return;
+      if (!exists) {
+        writeIndex(readIndex().filter((item) => item.fileId !== fileId));
+        setStatus("idle");
+      }
+    });
+
+    return () => {
+      active = false;
+    };
+  }, [fileId]);
 
   const startDownload = useCallback(async () => {
     if (!isOfflineSupported()) {
